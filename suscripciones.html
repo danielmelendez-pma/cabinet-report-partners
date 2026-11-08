@@ -15,8 +15,79 @@ footer{padding:22px 0;border-top:1px solid #ffffff24;color:var(--muted);font-siz
 
 @media(max-width:820px){header nav{flex-direction:column;align-items:center;gap:10px;padding:13px 0}.navlinks{flex-wrap:wrap;justify-content:center;gap:10px 18px}}
 @media(max-width:550px){.navlinks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;text-align:center;gap:8px}.navlinks a{border:1px solid #51454e;border-radius:8px;padding:8px 6px;font-size:12px}nav img{width:148px;max-width:55vw}}
-</style></head>
-<body><header><nav class="wrap"><a href="index.html" aria-label="Ir al inicio de Cabinet Report"><img src="logo-ovalado.png" alt="Cabinet Report"></a><div class="navlinks"><a href="index.html" aria-label="Volver al inicio del portal Cabinet Report">Inicio</a><a href="https://cabinet-report.gitbook.io/cabinet-report-docs/">Documentación oficial</a><a href="partners.html">Partners</a><a href="https://cabinet-report.gitbook.io/curso-de-cabinet-report/">Cursos</a><a href="https://cabinet-report.gitbook.io/cabinet-report-docs/manual-de-usuario">Manual de usuario</a></div></nav></header>
+
+/* Etapa 6: las seis licencias se ven en 3x2 dentro de una laptop.
+   No se fuerza overflow:hidden: los viewports pequenos pueden desplazarse. */
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto minmax(min-content, 1fr) auto;
+}
+main.wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(14px, 2.4dvh, 28px) 0;
+}
+main h1 { font-size: clamp(31px, 3.4vw, 46px); margin: 6px 0 10px; }
+main .lead { max-width: 1020px; font-size: 14px; line-height: 1.4; margin: 0 0 10px; }
+main .source { margin: 0 0 10px; }
+main .grid { gap: 12px; }
+main .plan { min-height: 145px; padding: 15px 17px; }
+main .symbol { font-size: 20px; line-height: 1.2; }
+main .plan h2 { font-size: 16px; margin: 6px 0; }
+main .amount { font-size: 27px; }
+main .action { padding-top: 7px; }
+main .foot { margin: 11px 0 0; font-size: 12px; line-height: 1.35; }
+main .btn { min-height: 35px; padding: 7px 12px; margin: 7px 8px 0 0; }
+footer { padding: 8px 0; }
+@media (min-width: 900px) and (max-height: 700px) {
+  main.wrap { padding: 10px 0; }
+  main h1 { font-size: 34px; margin: 3px 0 6px; }
+  main .lead { font-size: 13px; margin-bottom: 7px; line-height: 1.35; }
+  main .source { font-size: 11px; margin-bottom: 7px; }
+  main .grid { gap: 10px; }
+  main .plan { min-height: 121px; padding: 10px 15px; }
+  main .symbol { font-size: 18px; line-height: 1.1; }
+  main .plan h2 { font-size: 15px; margin: 4px 0; }
+  main .amount { font-size: 25px; }
+  main .action { padding-top: 5px; font-size: 11px; }
+  main .foot { margin-top: 8px; font-size: 11px; }
+  main .btn { min-height: 30px; margin-top: 5px; padding: 5px 10px; }
+  footer { padding: 5px 0; }
+}
+@media (max-width: 820px) {
+  main.wrap { justify-content: flex-start; padding: 24px 0 36px; }
+  main .plan { min-height: 140px; }
+  main .lead { max-width: 640px; }
+}
+@media (max-width: 550px) {
+  main h1 { font-size: clamp(30px, 8vw, 40px); }
+  main .grid { grid-template-columns: 1fr; gap: 10px; }
+  main .plan { min-height: 128px; }
+  main .btn { width: 100%; justify-content: center; text-align: center; margin-right: 0; }
+  .dhead, .dcontent, .dfoot { padding: 16px; }
+}
+
+</style>
+<link rel="stylesheet" href="cabinet-header.css?v=20261108-01">
+</head>
+<body>
+<header class="cr-site-header">
+  <div class="cr-site-header-inner">
+    <a class="cr-brand" href="index.html" aria-label="Ir al inicio de Cabinet Report">
+      <img src="logo-ovalado.png" alt="Cabinet Report" width="498" height="167">
+    </a>
+    <nav class="cr-site-nav" aria-label="Navegación principal">
+      <a href="index.html">Inicio</a>
+      <a href="https://cabinet-report.gitbook.io/cabinet-report-docs/">Documentación oficial</a>
+      <a href="partners.html">Partners</a>
+      <a href="https://cabinet-report.gitbook.io/curso-de-cabinet-report/">Cursos</a>
+      <a href="https://cabinet-report.gitbook.io/cabinet-report-docs/manual-de-usuario">Manual de usuario</a>
+    </nav>
+  </div>
+</header>
 <main class="wrap"><span class="eyebrow">CABINET REPORT · LICENCIAS OFICIALES</span><h1>Planes de suscripción</h1><p class="lead">Elige el plan que se adapta a tu producción. Consulta precios mensuales, capacidades y condiciones. Selecciona una tarjeta para ver la ficha oficial sin salir de esta página.</p>
 <p class="source" id="source" role="status" aria-live="polite">Consultando tarifas en la documentación oficial…</p>
 <div class="grid" id="grid">
