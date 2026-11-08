@@ -1,0 +1,126 @@
+/* Cabecera global de Cabinet Report: inicio, Partners y Suscripciones.
+   Estilos prefijados para evitar colisiones con cada pagina. */
+.cr-site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #151519;
+  border-bottom: 1px solid #3c3c3c;
+  backdrop-filter: blur(12px);
+}
+.cr-site-header .cr-site-header-inner {
+  width: min(1180px, calc(100% - 40px));
+  min-height: clamp(60px, 8dvh, 76px);
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.cr-site-header .cr-brand { display: inline-flex; align-items: center; flex-shrink: 0; }
+.cr-site-header .cr-brand img {
+  display: block;
+  width: clamp(130px, 12vw, 160px);
+  max-width: 100%;
+  height: auto;
+}
+.cr-site-header .cr-site-nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 0;
+  gap: 8px clamp(12px, 2vw, 27px);
+  padding: 0;
+}
+.cr-site-header .cr-site-nav a {
+  color: #f0eaef;
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  transition: color .2s;
+}
+.cr-site-header .cr-site-nav a:hover,
+.cr-site-header .cr-site-nav a[aria-current="page"] { color: #f08080; }
+.cr-site-header .cr-site-nav a[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.cr-site-header a:focus-visible,
+.cr-partner-subnav a:focus-visible {
+  outline: 3px solid #f08080;
+  outline-offset: 4px;
+  border-radius: 5px;
+}
+/* Links internos especificos de Partners, separados de la cabecera global. */
+.cr-partner-subnav {
+  background: #202027;
+  border-bottom: 1px solid #3c3c3c;
+}
+.cr-partner-subnav .cr-partner-subnav-inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 52px;
+  padding: 6px 0;
+}
+.cr-partner-subnav nav {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+  white-space: nowrap;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.cr-partner-subnav nav a { font-size: 12px; color: #f0eaef; text-decoration: none; }
+.cr-partner-subnav nav a:hover { color: #f08080; }
+.cr-partner-subnav .btn { flex: none; white-space: nowrap; }
+@media (min-width: 761px) and (max-height: 640px) {
+  .cr-site-header .cr-site-header-inner { min-height: 56px; }
+  .cr-site-header .cr-brand img { width: 136px; }
+  .cr-site-header .cr-site-nav a { font-size: 12px; }
+}
+@media (max-width: 760px) {
+  .cr-site-header .cr-site-header-inner {
+    width: calc(100% - 32px);
+    min-height: 0;
+    padding: 10px 0;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .cr-site-header .cr-brand img { width: 140px; }
+  .cr-site-header .cr-site-nav { justify-content: center; gap: 7px 18px; }
+  .cr-site-header .cr-site-nav a { font-size: 12px; }
+  .cr-partner-subnav .cr-partner-subnav-inner { min-height: 46px; gap: 8px; }
+  .cr-partner-subnav nav { gap: 13px; }
+  .cr-partner-subnav .btn { min-height: 36px; padding: 7px 10px; font-size: 11px; }
+}
+@media (max-width: 470px) {
+  .cr-site-header .cr-site-header-inner {
+    width: calc(100% - 28px);
+    padding: 8px 0;
+    gap: 7px;
+  }
+  .cr-site-header .cr-brand img { width: 125px; }
+  .cr-site-header .cr-site-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    gap: 6px;
+  }
+  .cr-site-header .cr-site-nav a {
+    padding: 6px 5px;
+    background: #242424;
+    border: 1px solid #3c3c3c;
+    border-radius: 7px;
+    font-size: 11px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cr-site-header .cr-site-nav a { transition: none; }
+}
