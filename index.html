@@ -5,7 +5,7 @@
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="#111216" name="theme-color"/><meta content="Explora el programa Cabinet Report Partners y simula tus beneficios por recomendación, captación digital y gestión de redes sociales." name="description"/>
 <title>Cabinet Report Partners | Calcula las comisiones por etapa</title>
-<link href="logo-redondo.png" rel="icon" type="image/png"/><link href="styles.css" rel="stylesheet"/><script defer="" src="script.js"></script>
+<link href="logo-redondo.png" rel="icon" type="image/png"/><link href="styles.css" rel="stylesheet"/><script defer="" src="script.js"></script><script defer="" src="plans.js"></script>
 <meta content="Cabinet Report Partners — Simula tus ingresos" property="og:title"/><meta content="Conoce Cabinet Report, explora los roles de partner y calcula beneficios mensuales o anuales." property="og:description"/><meta content="website" property="og:type"/></head>
 <body>
 <div class="ribbon">PROGRAMA EN DESARROLLO · CONDICIONES PRELIMINARES · SIN TRANSACCIONES</div>
@@ -29,13 +29,13 @@
 <article class="role"><div class="role-head"><span class="symbol">⊕</span><span class="tag">Porcentaje acordado</span></div><h3>Partner integral</h3><p>Combina captación, venta y gestión de clientes bajo acuerdos explícitos.</p><div class="value"><strong>Hasta 30%</strong><small>Meses 2–12: funciones acumuladas</small></div><p class="tiny">Desde el mes 13: 8% por gestión activa. El primer pago puede generar el 40% si también es referidor acreditado.</p></article>
 </div><div class="role-global-action"><button class="btn outline" data-show-benefits="true" type="button">◫ Ver tabla global de beneficios ↗</button></div></section>
 <section class="wrap section plans-section" id="planes"><div class="heading"><div><span class="eyebrow">LICENCIAS MENSUALES</span><h2>Planes vigentes de Cabinet Report.</h2></div><p>Elige el plan que vas a ofrecer y úsalo en la calculadora. Consulta siempre los importes y condiciones más recientes de la documentación oficial.</p></div><div class="plan-grid">
-<article><span>⚙️</span><h3>Optimizador</h3><strong>$25 <small>/ mes</small></strong></article>
-<article><span>🟢</span><h3>Básico</h3><strong>$50 <small>/ mes</small></strong></article>
-<article><span>🔵</span><h3>Intermedio</h3><strong>$75 <small>/ mes</small></strong></article>
-<article><span>🔵</span><h3>Profesional</h3><strong>$150 <small>/ mes</small></strong></article>
-<article><span>🟠</span><h3>Empresarial</h3><strong>$200 <small>/ mes</small></strong></article>
-<article><span>🟣</span><h3>Socio</h3><strong>$300 <small>/ mes</small></strong></article>
-</div><a class="btn outline plan-link" href="https://cabinet-report.gitbook.io/cabinet-report-docs/planes-de-suscripcion" rel="noopener noreferrer" target="_blank">Ver planes y condiciones en la documentación oficial ↗</a><p class="hint">Precios mensuales indicados por Cabinet Report. Pueden cambiar; verifica el enlace oficial antes de hacer una oferta a un cliente.</p></section>
+<button class="plan-card" type="button" data-plan="optimizador" aria-haspopup="dialog" aria-controls="plan-dialog" aria-label="Ver características, límites y precios del plan Optimizador"><span aria-hidden="true">⚙️</span><h3>Optimizador</h3><strong><span class="plan-price">$25</span> <small>/ mes</small></strong><span class="plan-card-action">Ver detalles del plan ↗</span></button>
+<button class="plan-card" type="button" data-plan="basico" aria-haspopup="dialog" aria-controls="plan-dialog" aria-label="Ver características, límites y precios del plan Básico"><span aria-hidden="true">🟢</span><h3>Básico</h3><strong><span class="plan-price">$50</span> <small>/ mes</small></strong><span class="plan-card-action">Ver detalles del plan ↗</span></button>
+<button class="plan-card" type="button" data-plan="intermedio" aria-haspopup="dialog" aria-controls="plan-dialog" aria-label="Ver características, límites y precios del plan Intermedio"><span aria-hidden="true">🔵</span><h3>Intermedio</h3><strong><span class="plan-price">$75</span> <small>/ mes</small></strong><span class="plan-card-action">Ver detalles del plan ↗</span></button>
+<button class="plan-card" type="button" data-plan="profesional" aria-haspopup="dialog" aria-controls="plan-dialog" aria-label="Ver características, límites y precios del plan Profesional"><span aria-hidden="true">🔵</span><h3>Profesional</h3><strong><span class="plan-price">$150</span> <small>/ mes</small></strong><span class="plan-card-action">Ver detalles del plan ↗</span></button>
+<button class="plan-card" type="button" data-plan="empresarial" aria-haspopup="dialog" aria-controls="plan-dialog" aria-label="Ver características, límites y precios del plan Empresarial"><span aria-hidden="true">🟠</span><h3>Empresarial</h3><strong><span class="plan-price">$200</span> <small>/ mes</small></strong><span class="plan-card-action">Ver detalles del plan ↗</span></button>
+<button class="plan-card" type="button" data-plan="socio" aria-haspopup="dialog" aria-controls="plan-dialog" aria-label="Ver características, límites y precios del plan Socio"><span aria-hidden="true">🟣</span><h3>Socio</h3><strong><span class="plan-price">$300</span> <small>/ mes</small></strong><span class="plan-card-action">Ver detalles del plan ↗</span></button>
+</div><p class="pricing-source-status" id="pricing-source-status" role="status" aria-live="polite">Consultando tarifas en la documentación oficial...</p><a class="btn outline plan-link" href="https://cabinet-report.gitbook.io/cabinet-report-docs/planes-de-suscripcion" rel="noopener noreferrer" target="_blank">Ver planes y condiciones en la documentación oficial ↗</a><p class="hint">Precios mensuales indicados por Cabinet Report. Pueden cambiar; verifica el enlace oficial antes de hacer una oferta a un cliente.</p></section>
 <section class="stripe calculator" id="simulador">
   <div class="wrap section calc-section">
     <div class="heading calc-heading">
@@ -58,7 +58,7 @@
           <div class="calc-fields">
             <div><label for="plan-select">Plan de suscripción</label>
               <select id="plan-select" aria-label="Plan de suscripción">
-                <option value="25">⚙️ Optimizador · $25/mes</option><option value="50">🟢 Básico · $50/mes</option><option value="75" selected>🔵 Intermedio · $75/mes</option><option value="150">🔵 Profesional · $150/mes</option><option value="200">🟠 Empresarial · $200/mes</option><option value="300">🟣 Socio · $300/mes</option>
+                <option value="25" data-plan="optimizador">⚙️ Optimizador · $25/mes</option><option value="50" data-plan="basico">🟢 Básico · $50/mes</option><option value="75" data-plan="intermedio" selected>🔵 Intermedio · $75/mes</option><option value="150" data-plan="profesional">🔵 Profesional · $150/mes</option><option value="200" data-plan="empresarial">🟠 Empresarial · $200/mes</option><option value="300" data-plan="socio">🟣 Socio · $300/mes</option>
               </select>
             </div>
             <div><label for="client-count">Cantidad de clientes</label><input id="client-count" type="number" min="0" step="1" max="100000" inputmode="numeric" value="1" aria-describedby="client-help"/></div>
@@ -68,7 +68,7 @@
           <label id="credit-digital-wrap" class="calc-checkbox" hidden><input type="checkbox" id="credit-digital" checked/> <span>Estos clientes fueron <b>captados por redes</b> con código/enlace verificable (8% en meses 2–12).</span></label>
           <div id="company-revenue-wrap" class="admin-revenue" hidden><label for="company-revenue">Ingresos mensuales netos de Cabinet Report <span>(base de la comisión global de gestión)</span></label><div class="money-field"><span>$</span><input id="company-revenue" type="number" min="0" step="0.01" value="10000" inputmode="decimal"/></div></div>
           <div class="calc-micro-note" id="calc-rule">Primera cuota: 40%. Renovaciones meses 2–12: 8%. Desde mes 13: 0%.</div>
-          <div class="calc-links"><a href="https://cabinet-report.gitbook.io/cabinet-report-docs/planes-de-suscripcion" rel="noopener noreferrer" target="_blank">Consultar planes oficiales ↗</a><button type="button" data-show-benefits="true">Ver tabla global de beneficios ↗</button></div>
+          <div class="calc-links"><a href="https://cabinet-report.gitbook.io/cabinet-report-docs/planes-de-suscripcion" rel="noopener noreferrer" target="_blank">Consultar planes oficiales ↗</a><button type="button" data-show-benefits="true">Ver tabla global de beneficios ↗</button></div><p class="calc-pricing-status" id="calc-pricing-status" role="status" aria-live="polite">Consultando precios de referencia...</p>
         </div>
         <div class="calcresults" aria-live="polite">
           <div class="calc-results-head"><div><span class="eyebrow">ÚNICAMENTE LO QUE RECIBE EL PARTNER</span><h3>Tu ingreso por etapa</h3></div><span class="result-currency">USD · Pagos netos</span></div>
@@ -101,7 +101,14 @@
 <a class="btn coral whatsapp-button" href="https://wa.me/50766359740" id="whatsapp-interest" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" fill="none" height="21" viewbox="0 0 24 24" width="21"><path d="M20.2 11.8a8.2 8.2 0 0 1-12 7.25L3.5 20.5l1.5-4.55a8.2 8.2 0 1 1 15.2-4.15Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path><path d="M8.2 8c.2-.3.5-.35.75-.17l1.3 1.1-.8 1.3c.5 1.1 1.4 2 2.5 2.5l1.3-.8 1.1 1.3c.18.25.13.55-.17.75-.6.48-1.3.63-2.2.3-2.95-1.1-4.45-2.6-5.55-5.55-.33-.9-.18-1.6.3-2.2Z" stroke="currentColor" stroke-linecap="round" stroke-width="1.7"></path></svg> Enviar solicitud por WhatsApp ↗</a>
 <p class="hint">Abre el chat oficial +507 6635-9740 con el texto preparado. El mensaje <strong>no se envía automáticamente</strong>; tú decides si lo envías. Este sitio no guarda tu nombre ni recoge solicitudes en una base de datos.</p>
 </div></section>
-</main><dialog aria-describedby="benefits-intro" aria-labelledby="benefits-title" class="benefits-dialog" id="benefits-dialog">
+</main><dialog class="plan-dialog" id="plan-dialog" aria-labelledby="plan-dialog-title" aria-describedby="plan-dialog-status">
+  <div class="plan-dialog-head"><div><span class="eyebrow">CABINET REPORT · LICENCIAS OFICIALES</span><h2 id="plan-dialog-title">Información del plan</h2><p class="plan-dialog-price" id="plan-dialog-price">Consultando...</p></div><button class="close-plan-dialog" id="close-plan-dialog" type="button" aria-label="Cerrar detalles del plan">×</button></div>
+  <div class="plan-dialog-content" id="plan-dialog-content" tabindex="0">
+    <p class="plan-dialog-status" id="plan-dialog-status" role="status" aria-live="polite">Cargando información oficial...</p>
+    <div class="plan-document" id="plan-document"></div>
+  </div>
+  <div class="plan-dialog-footer"><a class="btn outline plan-official-link" id="plan-official-link" href="https://cabinet-report.gitbook.io/cabinet-report-docs/planes-de-suscripcion" target="_blank" rel="noopener noreferrer">Ver ficha oficial en GitBook ↗</a><button class="btn coral" id="plan-to-calculator" type="button">Simular este plan ↗</button></div>
+</dialog><dialog aria-describedby="benefits-intro" aria-labelledby="benefits-title" class="benefits-dialog" id="benefits-dialog">
 <div class="benefits-head"><div><span class="eyebrow">CABINET REPORT PARTNERS · PORCENTAJES</span><h2 id="benefits-title">Tabla global de beneficios</h2><p id="benefits-intro">Las participaciones se aplican a cobros netos efectivamente recibidos y a funciones acreditadas.</p></div><button aria-label="Cerrar tabla de beneficios" class="close-benefits" id="close-benefits" type="button">×</button></div>
 <div aria-label="Tabla de beneficios con desplazamiento horizontal" class="benefits-scroll" tabindex="0">
 <table class="benefits-table">
