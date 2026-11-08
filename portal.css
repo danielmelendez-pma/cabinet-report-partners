@@ -1,0 +1,58 @@
+/* Portal de acceso — identidad visual oficial Cabinet Report */
+:root{color-scheme:dark;--bg:#111216;--panel:#242424;--panel2:#3c3c3c;--coral:#f08080;--rose:#ffe4e1;--white:#fff;--muted:#c5c0c6;--line:#3c3c3c}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--white);font:15px/1.6 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}
+a:focus-visible{outline:3px solid var(--coral);outline-offset:5px;border-radius:5px}
+.skip-link{position:absolute;z-index:100;left:12px;top:-80px;padding:10px 16px;background:var(--rose);color:#171717;border-radius:7px;font-weight:700}
+.skip-link:focus{top:10px}
+.portal-shell{min-height:100svh;display:flex;flex-direction:column;overflow:hidden}
+.site-header{position:relative;z-index:2;background:#151519;border-bottom:1px solid var(--line)}
+.site-header-inner{width:min(1180px,calc(100% - 48px));margin:auto;min-height:86px;display:flex;align-items:center;justify-content:space-between;gap:32px}
+.brand{display:inline-flex;align-items:center;flex-shrink:0}
+.brand img{display:block;width:165px;height:auto;max-width:100%}
+.site-nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:10px 29px}
+.site-nav a{font-size:13px;font-weight:750;color:#f0eaef;transition:color .2s}
+.site-nav a:hover{color:var(--coral)}
+.landing{flex:1;display:flex;align-items:center;justify-content:center;position:relative;isolation:isolate}
+.landing::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(ellipse 48% 54% at 50% 44%,#43292f55 0%,#1c1b21 62%,transparent 100%)}
+.landing::after{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(#ffffff06 1px,transparent 1px),linear-gradient(90deg,#ffffff06 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse at 50% 40%,#000 10%,transparent 72%);pointer-events:none}
+.hero{position:relative;width:min(1000px,calc(100% - 40px));padding:56px 0 65px;text-align:center}
+.hero-glow{position:absolute;left:50%;top:40%;width:min(620px,85vw);height:min(620px,85vw);transform:translate(-50%,-50%);border-radius:50%;border:1px solid #f0808018;box-shadow:0 0 0 55px #f0808005,0 0 0 110px #f0808003;pointer-events:none}
+.hero-content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center}
+.eyebrow{font-size:11px;font-weight:850;letter-spacing:.24em;color:var(--coral)}
+.hero-logo{display:block;width:clamp(190px,23vw,285px);height:auto;margin:19px auto 16px;filter:drop-shadow(0 20px 35px #0008)}
+.hero h1{font-size:clamp(29px,4.4vw,56px);line-height:1.16;letter-spacing:-.052em;margin:10px 0 18px;font-weight:850;text-wrap:balance}
+.hero h1 span{color:var(--rose)}
+.hero-description{color:var(--muted);font-size:clamp(14px,1.45vw,17px);max-width:670px;margin:0 auto 27px;text-wrap:pretty}
+.plans-link{display:inline-flex;align-items:center;justify-content:center;gap:13px;min-height:45px;padding:11px 20px;border:1px solid #ad777d;border-radius:11px;background:linear-gradient(145deg,#35262b,#242424);font-size:13px;font-weight:750;color:var(--rose);transition:background .2s,transform .2s,border-color .2s}
+.plans-link:hover{background:#493036;border-color:var(--coral);transform:translateY(-2px)}
+.site-footer{position:relative;z-index:1;background:#151519;border-top:1px solid var(--line)}
+.footer-inner{width:min(1180px,calc(100% - 48px));margin:auto;padding:24px 0 17px}
+.social-heading{text-align:center;font-size:10px;letter-spacing:.19em;color:var(--coral);font-weight:850;margin:0 0 13px}
+.social-links{display:flex;justify-content:center;flex-wrap:wrap;gap:9px 14px}
+.social-links a{display:inline-flex;align-items:center;gap:10px;padding:8px 15px;border:1px solid #3c3c3c;border-radius:10px;background:#242424;color:#f5e9ed;font-size:12px;font-weight:700;transition:background .2s,border-color .2s,transform .2s}
+.social-links a:hover{border-color:var(--coral);background:#3c3035;transform:translateY(-2px)}
+.social-links svg{width:19px;height:19px;flex-shrink:0;color:var(--coral)}
+.footer-bottom{display:flex;justify-content:space-between;gap:14px;margin-top:23px;padding-top:13px;border-top:1px solid #ffffff13;color:#a7a0aa;font-size:11px}
+@media(max-width:760px){
+ .site-header-inner{padding:15px 0;flex-direction:column;gap:14px}
+ .brand img{width:150px}
+ .site-nav{justify-content:center;gap:10px 18px}
+ .site-nav a{font-size:12px}
+ .hero{padding:43px 0 48px}
+ .hero-logo{width:clamp(190px,35vw,250px)}
+}
+@media(max-width:470px){
+ .site-header-inner,.footer-inner{width:calc(100% - 28px)}
+ .site-nav{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .site-nav a{padding:8px 6px;text-align:center;background:#242424;border:1px solid #3c3c3c;border-radius:8px;font-size:11px}
+ .hero{width:calc(100% - 28px);padding:36px 0 42px}
+ .hero h1{font-size:clamp(27px,8vw,37px)}
+ .hero-description{font-size:14px}
+ .social-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .social-links a{justify-content:center;padding:10px 8px}
+ .footer-bottom{flex-direction:column;align-items:center;gap:2px;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.site-nav a,.plans-link,.social-links a{transition:none}}
