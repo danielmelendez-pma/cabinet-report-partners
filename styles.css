@@ -256,3 +256,8 @@ body.calc-full-open{overflow:hidden}
   outline:3px solid #ffd2c8;
   outline-offset:3px;
 }
+
+/* Etapa 6: acceso a Inicio visible en Partners, también en móviles. */
+.topnav nav .home-nav-link{color:#f08080;font-weight:800}
+@media(max-width:760px){.topnav nav{display:flex}.topnav nav a:not(.home-nav-link){display:none}}
+@media(max-width:510px){.topnav{gap:8px}.topnav nav{flex:0 0 auto}}
