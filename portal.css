@@ -67,6 +67,7 @@ a:focus-visible { outline: 3px solid var(--coral); outline-offset: 4px; border-r
 }
 .site-nav a { font-size: 13px; font-weight: 750; color: #f0eaef; transition: color .2s; }
 .site-nav a:hover { color: var(--coral); }
+.site-nav a[aria-current="page"] { color: var(--coral); text-decoration: underline; text-underline-offset: 5px; }
 
 .landing {
   min-width: 0;
