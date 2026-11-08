@@ -70,6 +70,98 @@ footer { padding: 8px 0; }
   .dhead, .dcontent, .dfoot { padding: 16px; }
 }
 
+/* Etapa 6: Plan Gratis destacado, acciones horizontales y WhatsApp comercial. */
+main .free-plan-highlight {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 9px 14px;
+  margin: 10px 0 0;
+  border: 1px solid #a86e77;
+  border-left: 4px solid var(--coral);
+  border-radius: 12px;
+  background: linear-gradient(108deg, #402d35 0%, #29232b 54%, #1d1d23 100%);
+  box-shadow: 0 4px 16px #0005;
+}
+main .free-plan-mark {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #f0808026;
+  color: var(--rose);
+  font-size: 27px;
+  line-height: 1;
+}
+main .free-plan-copy { min-width: 0; flex: 1; }
+main .free-plan-heading { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 10px; }
+main .free-plan-heading strong { color: #fff; font-size: 15px; line-height: 1.15; }
+main .free-plan-tag {
+  padding: 2px 7px;
+  border-radius: 20px;
+  background: var(--coral);
+  color: #23161b;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .075em;
+}
+main .free-plan-copy p { margin: 3px 0 0; color: #e6d6db; font-size: 11.5px; line-height: 1.3; }
+main .free-plan-cta {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  border: 1px solid var(--coral);
+  border-radius: 9px;
+  padding: 6px 12px;
+  color: #1a1417;
+  background: var(--coral);
+  font-weight: 800;
+  font-size: 12px;
+  text-decoration: none;
+  transition: filter .2s;
+}
+main .free-plan-cta:hover { filter: brightness(1.12); }
+main .support-actions { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; margin-top: 8px; }
+main .support-actions .btn { width: 100%; min-height: 34px; margin: 0; padding: 6px 12px; align-items: center; justify-content: center; text-align: center; }
+main .pricing-note { margin: 5px 0 0; color: var(--muted); font-size: 10.5px; line-height: 1.3; }
+.dfoot .whatsapp-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #25d366;
+  border-color: #25d366;
+  color: #102819;
+  font-weight: 850;
+  font-size: 12.5px;
+}
+.dfoot .whatsapp-cta svg { flex: none; }
+.dfoot .whatsapp-cta:hover { background: #1fb75b; border-color: #1fb75b; color: #0a2112; }
+@media (min-width: 900px) and (max-height: 700px) {
+  main .free-plan-highlight { margin-top: 7px; padding: 7px 12px; }
+  main .free-plan-mark { width: 30px; height: 30px; font-size: 23px; }
+  main .free-plan-copy p { font-size: 11px; }
+  main .support-actions { margin-top: 6px; }
+  main .support-actions .btn { min-height: 30px; padding: 5px 10px; }
+}
+@media (max-width: 600px) {
+  main .free-plan-highlight { flex-wrap: wrap; gap: 8px 10px; }
+  main .free-plan-copy { flex-basis: calc(100% - 48px); }
+  main .free-plan-cta { width: 100%; }
+  main .support-actions { grid-template-columns: 1fr; }
+}
+@media (max-width: 550px) {
+  .dfoot { display: grid; grid-template-columns: 1fr; }
+  .dfoot a { display: inline-flex; justify-content: center; align-items: center; text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  main .free-plan-cta { transition: none; }
+}
+
 </style>
 <link rel="stylesheet" href="cabinet-header.css?v=20261108-01">
 </head>
@@ -97,10 +189,22 @@ footer { padding: 8px 0; }
 <button class="plan" type="button" data-key="profesional" aria-haspopup="dialog"><span class="symbol">🔵</span><h2>Profesional</h2><strong class="amount">Consultando…</strong><span class="action">Ver detalles del plan ↗</span></button>
 <button class="plan" type="button" data-key="empresarial" aria-haspopup="dialog"><span class="symbol">🟠</span><h2>Empresarial</h2><strong class="amount">Consultando…</strong><span class="action">Ver detalles del plan ↗</span></button>
 <button class="plan" type="button" data-key="socio" aria-haspopup="dialog"><span class="symbol">🟣</span><h2>Socio</h2><strong class="amount">Consultando…</strong><span class="action">Ver detalles del plan ↗</span></button>
-</div><p class="foot">También está disponible el <a href="https://cabinet-report.gitbook.io/cabinet-report-docs/planes-de-suscripcion/plan-gratis">Plan Gratis</a>. Los precios y beneficios se consultan desde los archivos oficiales de GitBook. No se presentan precios anteriores cuando la fuente no está disponible.</p>
-<a class="btn" href="https://cabinet-report.gitbook.io/cabinet-report-docs/planes-de-suscripcion/">Ver documentación oficial</a><a class="btn" href="https://cabinet-report.gitbook.io/cabinet-report-docs/planes-de-suscripcion/tabla-comparativa">Comparar planes</a>
+</div>
+<section class="free-plan-highlight" aria-labelledby="free-plan-title">
+  <span class="free-plan-mark" aria-hidden="true">✦</span>
+  <div class="free-plan-copy">
+    <div class="free-plan-heading"><strong id="free-plan-title">¡Comienza con el Plan Gratis!</strong><span class="free-plan-tag">SIN COSTO</span></div>
+    <p>Conoce Cabinet Report con funciones básicas y descubre si se adapta a tu producción.</p>
+  </div>
+  <a class="free-plan-cta" href="https://cabinet-report.gitbook.io/cabinet-report-docs/planes-de-suscripcion/plan-gratis">Conocer el Plan Gratis ↗</a>
+</section>
+<div class="support-actions" aria-label="Enlaces para consultar suscripciones">
+  <a class="btn" href="https://cabinet-report.gitbook.io/cabinet-report-docs/planes-de-suscripcion/">Ver documentación oficial</a>
+  <a class="btn" href="https://cabinet-report.gitbook.io/cabinet-report-docs/planes-de-suscripcion/tabla-comparativa">Comparar planes</a>
+</div>
+<p class="pricing-note">Los precios y beneficios se consultan desde los archivos oficiales de GitBook. No se presentan precios anteriores cuando la fuente no está disponible.</p>
 </main>
-<dialog id="details" aria-labelledby="dtitle" aria-describedby="dstatus"><div class="dhead"><div><span class="eyebrow">CABINET REPORT · FICHA OFICIAL</span><h2 id="dtitle">Detalles del plan</h2><p class="dprice" id="dprice"></p></div><button type="button" class="close" id="close" aria-label="Cerrar detalles">×</button></div><div class="dcontent" id="dscroll" tabindex="0"><p class="dstatus" id="dstatus" role="status"></p><div id="document"></div></div><div class="dfoot"><a id="official" href="https://cabinet-report.gitbook.io/cabinet-report-docs/planes-de-suscripcion/">Ver ficha oficial en GitBook ↗</a><a href="https://cabinet-report.gitbook.io/cabinet-report-docs/planes-de-suscripcion/tabla-comparativa">Tabla comparativa ↗</a></div></dialog>
+<dialog id="details" aria-labelledby="dtitle" aria-describedby="dstatus"><div class="dhead"><div><span class="eyebrow">CABINET REPORT · FICHA OFICIAL</span><h2 id="dtitle">Detalles del plan</h2><p class="dprice" id="dprice"></p></div><button type="button" class="close" id="close" aria-label="Cerrar detalles">×</button></div><div class="dcontent" id="dscroll" tabindex="0"><p class="dstatus" id="dstatus" role="status"></p><div id="document"></div></div><div class="dfoot"><a class="whatsapp-cta" id="whatsapp-interest-plan" href="https://wa.me/50766359740" target="_blank" rel="noopener noreferrer" aria-label="Consultar este plan por WhatsApp"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="19" height="19" fill="none"><path d="M20.2 11.8a8.2 8.2 0 0 1-12 7.25L3.5 20.5l1.5-4.55a8.2 8.2 0 1 1 15.2-4.15Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/><path d="M8.2 8c.2-.3.5-.35.75-.17l1.3 1.1-.8 1.3c.5 1.1 1.4 2.5 2.5 2.5l1.3-.8 1.1 1.3c.18.25.13.55-.17.75-.7.55-1.5.65-2.35.32-2.8-1.05-4.4-2.7-5.25-5.3-.25-.75-.15-1.5.2-2.1Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"/></svg><span>Me interesa este plan</span></a><a id="official" href="https://cabinet-report.gitbook.io/cabinet-report-docs/planes-de-suscripcion/">Ver ficha oficial en GitBook ↗</a><a href="https://cabinet-report.gitbook.io/cabinet-report-docs/planes-de-suscripcion/tabla-comparativa">Tabla comparativa ↗</a></div></dialog>
 <footer><div class="wrap">© Cabinet Report · Información comercial sujeta a las condiciones oficiales de la documentación.</div></footer>
 <script>
 "use strict";
@@ -109,13 +213,20 @@ const root="https://raw.githubusercontent.com/danielmelendez-pma/CabinetReport-D
 const officialRoot="https://cabinet-report.gitbook.io/cabinet-report-docs/planes-de-suscripcion/";
 const data=new Map(keys.map(key=>[key,{text:null,price:null,error:null}]));
 const dlg=document.getElementById("details"), doc=document.getElementById("document"), status=document.getElementById("dstatus");
+const whatsappInterest=document.getElementById("whatsapp-interest-plan");
+const whatsappPhone="50766359740"; // Mismo contacto comercial de Cabinet Report Partners.
+function configureWhatsappInterest(planName){
+  const message="Hola, estoy interesado(a) en adquirir el Plan "+planName+" de Cabinet Report. Me gustaría recibir más información sobre sus beneficios, requisitos y el proceso de contratación. Muchas gracias.";
+  whatsappInterest.href="https://wa.me/"+whatsappPhone+"?text="+encodeURIComponent(message);
+  whatsappInterest.setAttribute("aria-label","Consultar por WhatsApp sobre el Plan "+planName);
+}
 let active=null,trigger=null;
 const money=n=>new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(n);
 function parsePrice(text){const line=text.split(/\r?\n/).find(x=>/^#{2,4}\s.*?\bPLAN\s+.+?\$\s*[\d,.]+\s*\/\s*mes\b/i.test(x));const m=line?.match(/\$\s*([\d,.]+)\s*\/\s*mes\b/i);if(!m)return null;const n=Number(m[1].replace(/,/g,""));return Number.isFinite(n)&&n>0&&n<100000?n:null;}
 async function load(key){const obj=data.get(key);if(obj.text||obj.error)return obj;try{const response=await fetch(root+"plan-"+key+".md",{cache:"no-store"});if(!response.ok)throw Error("HTTP "+response.status);const text=await response.text();if(!/^#\s+Plan\s+/im.test(text))throw Error("Ficha inválida");obj.text=text;obj.price=parsePrice(text);if(obj.price===null)obj.error="La tarifa no pudo verificarse.";}catch(e){obj.error="No se pudo consultar el documento oficial.";}return obj;}
 function inline(node,str){const clean=str.replace(/&#x20;|&nbsp;/gi," ").replace(/<mark\b[^>]*>|<\/mark>/gi,"").replace(/<[^>]+>/g,"").replace(/\[([^\]]+)\]\([^)]+\)/g,"$1");for(const part of clean.split(/(\*\*[^*]+\*\*)/g)){if(part.startsWith("**")&&part.endsWith("**")){const strong=document.createElement("strong");strong.textContent=part.slice(2,-2);node.append(strong);}else if(part)node.append(document.createTextNode(part));}}
 function render(text){doc.replaceChildren();let list=null;for(const line of text.split(/\r?\n/)){const s=line.trim();if(s==="---")break;if(!s||/^<\/?(?:figure|figcaption|img)\b/i.test(s)){list=null;continue;}const heading=s.match(/^(#{1,6})\s+(.*)$/);if(heading){list=null;if(heading[1].length===1)continue;const el=document.createElement(heading[1].length<=3?"h3":"h4");inline(el,heading[2]);doc.append(el);continue;}const item=line.match(/^(\s*)[-*]\s+(.*)$/);if(item){if(!list){list=document.createElement("ul");doc.append(list);}const li=document.createElement("li");inline(li,item[2]);list.append(li);}else{list=null;const p=document.createElement("p");inline(p,s);doc.append(p);}}}
-async function openPlan(key,button=null){if(!data.has(key))return;active=key;trigger=button||null;const card=document.querySelector('[data-key="'+key+'"]');document.getElementById("dtitle").textContent="Plan "+card.querySelector("h2").textContent;document.getElementById("dprice").textContent="Consultando tarifa…";document.getElementById("official").href=officialRoot+"plan-"+key;status.textContent="Cargando ficha desde CabinetReport-Docs…";doc.replaceChildren();if(!dlg.open)dlg.showModal();document.getElementById("close").focus({preventScroll:true});document.getElementById("dscroll").scrollTop=0;history.replaceState(null,"",location.pathname+"?plan="+encodeURIComponent(key));const result=await load(key);if(active!==key||!dlg.open)return;document.getElementById("dprice").textContent=result.price===null?"Tarifa pendiente de verificación":money(result.price)+" / mes";status.textContent=result.error||"Información consultada directamente desde la documentación oficial.";status.classList.toggle("warning",!!result.error);if(result.text)render(result.text);}
+async function openPlan(key,button=null){if(!data.has(key))return;active=key;trigger=button||null;const card=document.querySelector('[data-key="'+key+'"]');const planName=card.querySelector("h2").textContent.trim();configureWhatsappInterest(planName);document.getElementById("dtitle").textContent="Plan "+planName;document.getElementById("dprice").textContent="Consultando tarifa…";document.getElementById("official").href=officialRoot+"plan-"+key;status.textContent="Cargando ficha desde CabinetReport-Docs…";doc.replaceChildren();if(!dlg.open)dlg.showModal();document.getElementById("close").focus({preventScroll:true});document.getElementById("dscroll").scrollTop=0;history.replaceState(null,"",location.pathname+"?plan="+encodeURIComponent(key));const result=await load(key);if(active!==key||!dlg.open)return;document.getElementById("dprice").textContent=result.price===null?"Tarifa pendiente de verificación":money(result.price)+" / mes";status.textContent=result.error||"Información consultada directamente desde la documentación oficial.";status.classList.toggle("warning",!!result.error);if(result.text)render(result.text);}
 document.querySelectorAll(".plan").forEach(card=>card.addEventListener("click",()=>openPlan(card.dataset.key,card)));
 document.getElementById("close").addEventListener("click",()=>dlg.close());dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});dlg.addEventListener("close",()=>{active=null;history.replaceState(null,"",location.pathname);trigger?.focus({preventScroll:true});});
 (async()=>{await Promise.all(keys.map(async key=>{const r=await load(key),el=document.querySelector('[data-key="'+key+'"] .amount');el.replaceChildren(document.createTextNode(r.price===null?"Precio sin verificar":money(r.price)));if(r.price!==null){const small=document.createElement("small");small.textContent=" / mes";el.append(small);}}));const n=[...data.values()].filter(x=>x.price!==null).length;document.getElementById("source").textContent=n===6?"Tarifas mensuales verificadas en CabinetReport-Docs.":"Tarifas verificadas: "+n+" de 6. Comprueba las fichas oficiales antes de cotizar.";const key=new URLSearchParams(location.search).get("plan");if(data.has(key))openPlan(key);})();
