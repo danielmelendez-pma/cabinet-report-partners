@@ -1,44 +1,137 @@
 "use strict";
-// Publicación manual. Para una nueva versión, editar esta ficha tras verificar
-// la Release oficial y su instalador; no hay detección automática de actualizaciones.
+// Cada apertura consulta la última Release estable directamente en GitHub.
+// No se conserva una versión manual ni se reutiliza un instalador obsoleto.
 (() => {
-  const release = Object.freeze({
-    version: "8.22.2.34",
-    date: "05-11-2026",
-    summary: "Actualización del Revisor IA para consultar precios de materiales y mejorar el reconocimiento de revisiones al generar producción.",
-    changes: [
-      "Revisor IA: permite encontrar y consultar los precios de tableros y cantos de la producción durante la revisión de errores.",
-      "Generar producción: mejora el reconocimiento de revisiones IA completadas, incluso cuando todavía hay hallazgos pendientes de resolver o pasar por alto. Se mantienen las confirmaciones de seguridad."
-    ],
-    image: "https://github.com/user-attachments/assets/334de7cf-bf0d-4bd0-866e-305f41113199",
-    installer: "https://github.com/danielmelendez-pma/CabinetReport-Updates/releases/download/v8.22.2.34/CabinetReport-Setup-8.22.2.34.exe",
-    releasePage: "https://github.com/danielmelendez-pma/CabinetReport-Updates/releases/tag/v8.22.2.34"
-  });
   const byId = id => document.getElementById(id);
   const trigger = byId("open-download");
   const dialog = byId("download-dialog");
   const close = byId("close-download");
   if (!trigger || !dialog || !close || typeof dialog.showModal !== "function") return;
-  const official = "https://github.com/danielmelendez-pma/CabinetReport-Updates/";
-  if (!release.installer.startsWith(official + "releases/download/") ||
-      !release.releasePage.startsWith(official + "releases/tag/") ||
-      !release.image.startsWith("https://github.com/user-attachments/assets/")) return;
-  byId("download-title").textContent = "Cabinet Report · v" + release.version;
-  byId("download-date").textContent = "Publicación: " + release.date;
-  byId("download-summary").textContent = release.summary;
+
+  const api = "https://api.github.com/repos/danielmelendez-pma/CabinetReport-Updates/releases/latest";
+  const downloadsRoot = "https://github.com/danielmelendez-pma/CabinetReport-Updates/releases/download/";
+  const imageRoot = "https://github.com/user-attachments/assets/";
+  const title = byId("download-title");
+  const date = byId("download-date");
+  const status = byId("download-status");
+  const summary = byId("download-summary");
+  const heading = byId("download-changes-title");
   const list = byId("download-changes");
-  release.changes.forEach(change => { const li = document.createElement("li"); li.textContent = change; list.appendChild(li); });
-  byId("download-image").src = release.image;
-  byId("download-image").alt = "Imagen oficial de novedades de Cabinet Report, versión " + release.version;
-  byId("download-installer").href = release.installer;
-  byId("download-release-link").href = release.releasePage;
+  const image = byId("download-image");
+  const installer = byId("download-installer");
+  let controller = null;
+  let requestNumber = 0;
+
+  function clearDetails() {
+    title.textContent = "Cabinet Report";
+    date.textContent = "";
+    status.textContent = "Consultando la última versión estable…";
+    summary.textContent = "";
+    heading.hidden = true;
+    list.replaceChildren();
+    image.hidden = true;
+    image.removeAttribute("src");
+    installer.hidden = true;
+    installer.removeAttribute("href");
+  }
+
+  function readRelease(data) {
+    if (!data || data.draft || data.prerelease || !Array.isArray(data.assets)) {
+      throw new Error("La publicación no es una Release estable válida.");
+    }
+    const tag = data.tag_name;
+    if (typeof tag !== "string" || !/^v\d+(?:\.\d+){3}$/.test(tag)) {
+      throw new Error("La versión oficial tiene un formato inesperado.");
+    }
+    const version = tag.slice(1);
+    const filename = "CabinetReport-Setup-" + version + ".exe";
+    const expectedUrl = downloadsRoot + encodeURIComponent(tag) + "/" + encodeURIComponent(filename);
+    const asset = data.assets.find(item =>
+      item && item.name === filename && item.state === "uploaded" &&
+      item.browser_download_url === expectedUrl
+    );
+    if (!asset) throw new Error("La última versión no incluye un instalador oficial verificable.");
+
+    const body = typeof data.body === "string" ? data.body : "";
+    const matchDate = body.match(/^Fecha\s*=\s*(\d{2}-\d{2}-\d{4})\s*$/im);
+    const published = new Date(data.published_at);
+    const fallbackDate = Number.isNaN(published.getTime()) ? "" :
+      new Intl.DateTimeFormat("es-PA", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }).format(published);
+    const changesMatch = body.match(/CARACTER[IÍ]STICAS DE LA VERSI[OÓ]N:[\s\S]*?(?=\[General\]|<img\b|$)/i);
+    const changes = (changesMatch ? changesMatch[0] : body)
+      .split(/\r?\n/)
+      .map(line => line.trim())
+      .filter(line => /^\+\s*VERSI[OÓ]N\s/i.test(line))
+      .map(line => line.replace(/^\+\s*/, "").replace(/\s+/g, " ").slice(0, 1200))
+      .slice(0, 12);
+    const imageMatch = body.match(/<img\b[^>]*\bsrc=["'](https:\/\/github\.com\/user-attachments\/assets\/[a-f0-9-]+)["'][^>]*>/i);
+    const officialImage = imageMatch && imageMatch[1].startsWith(imageRoot) ? imageMatch[1] : null;
+    return { version, date: matchDate ? matchDate[1] : fallbackDate, changes, officialImage, installerUrl: expectedUrl };
+  }
+
+  async function loadLatest() {
+    const currentRequest = ++requestNumber;
+    if (controller) controller.abort();
+    controller = new AbortController();
+    clearDetails();
+
+    try {
+      const response = await fetch(api, {
+        method: "GET",
+        headers: { Accept: "application/vnd.github+json" },
+        cache: "no-store",
+        signal: controller.signal
+      });
+      if (!response.ok) throw new Error("GitHub respondió HTTP " + response.status);
+      const data = readRelease(await response.json());
+      if (controller.signal.aborted || currentRequest !== requestNumber || !dialog.open) return;
+
+      title.textContent = "Cabinet Report · v" + data.version;
+      date.textContent = data.date ? "Publicación: " + data.date : "";
+      summary.textContent = "Versión estable más reciente publicada oficialmente.";
+      heading.hidden = data.changes.length === 0;
+      data.changes.forEach(change => {
+        const li = document.createElement("li");
+        li.textContent = change;
+        list.appendChild(li);
+      });
+      if (data.changes.length === 0) {
+        summary.textContent = "Versión estable más reciente. La publicación no incluye novedades en el formato habitual.";
+      }
+      if (data.officialImage) {
+        image.src = data.officialImage;
+        image.alt = "Imagen oficial de novedades de Cabinet Report, versión " + data.version;
+        image.hidden = false;
+      }
+      installer.href = data.installerUrl;
+      installer.hidden = false;
+      status.textContent = "Última versión verificada en GitHub.";
+    } catch (error) {
+      if (currentRequest !== requestNumber || !dialog.open || error.name === "AbortError") return;
+      status.textContent = "No fue posible verificar la última versión en GitHub. Cierra esta ventana e inténtalo de nuevo.";
+      summary.textContent = "";
+      // Sin enlace de respaldo: nunca ofrecer una versión anterior como si fuera la última.
+      installer.hidden = true;
+      installer.removeAttribute("href");
+    }
+  }
+
+  image.addEventListener("error", () => { image.hidden = true; });
   trigger.hidden = false;
-  trigger.addEventListener("click", () => { dialog.showModal(); close.focus({preventScroll: true}); });
+  trigger.addEventListener("click", () => {
+    dialog.showModal();
+    close.focus({ preventScroll: true });
+    loadLatest();
+  });
   close.addEventListener("click", () => dialog.close());
   dialog.addEventListener("click", event => {
-    // Cerrar solo al pulsar el backdrop, no sobre el panel.
     if (event.target === dialog) dialog.close();
   });
-  dialog.addEventListener("close", () => trigger.focus({preventScroll: true}));
-  // <dialog> gestiona Escape, modalidad y confinamiento del foco de forma nativa.
+  dialog.addEventListener("close", () => {
+    requestNumber++;
+    if (controller) controller.abort();
+    controller = null;
+    trigger.focus({ preventScroll: true });
+  });
+  // <dialog> gestiona Escape y confinamiento del foco de forma nativa.
 })();

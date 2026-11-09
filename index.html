@@ -84,21 +84,21 @@
     <div class="download-modal">
       <button type="button" class="download-close" id="close-download" aria-label="Cerrar información de descarga">×</button>
       <div class="download-media">
-        <img id="download-image" src="logo-redondo.png" width="941" height="1672" alt="Imagen oficial de las novedades de Cabinet Report" loading="lazy">
+        <img id="download-image" src="logo-redondo.png" width="941" height="1672" alt="Imagen oficial de las novedades de Cabinet Report" loading="lazy" hidden>
       </div>
       <div class="download-info">
         <span class="download-kicker">LANZAMIENTO OFICIAL · WINDOWS</span>
         <h2 id="download-title">Cabinet Report</h2>
         <p class="download-meta" id="download-date"></p>
+        <p id="download-status" role="status" aria-live="polite">Consultando la última versión disponible…</p>
         <p id="download-summary"></p>
-        <h3>Principales novedades</h3>
+        <h3 id="download-changes-title" hidden>Principales novedades</h3>
         <ul id="download-changes"></ul>
-        <a id="download-installer" class="plans-link download-install" href="#" rel="noopener noreferrer" target="_blank">Descargar instalador <span aria-hidden="true">↓</span></a>
-        <p class="download-note">Archivo ejecutable para Windows. La descarga se realiza desde GitHub Releases, el repositorio oficial de actualizaciones. Este portal muestra una versión publicada de forma manual; no comprueba ni cambia automáticamente la última versión.</p>
-        <a id="download-release-link" class="download-source" href="#" target="_blank" rel="noopener noreferrer">Ver publicación oficial y detalles de la versión ↗</a>
+        <a id="download-installer" class="plans-link download-install" rel="noopener noreferrer" target="_blank" hidden>Descargar instalador <span aria-hidden="true">↓</span></a>
+        <p class="download-note">Archivo ejecutable para Windows, descargado desde GitHub Releases. Esta ventana consulta la última versión estable cada vez que la abres. Si GitHub no responde, no ofrecemos descargas sin verificar.</p>
       </div>
     </div>
   </dialog>
-  <script src="download-release.js?v=20261109-54" defer></script>
+  <script src="download-release.js?v=20261109-56" defer></script>
 </body>
 </html>
