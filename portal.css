@@ -140,6 +140,8 @@ a:focus-visible { outline: 3px solid var(--coral); outline-offset: 4px; border-r
   text-wrap: pretty;
 }
 .plans-link {
+  line-height: 1.5;
+  text-align: center;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -238,7 +240,7 @@ a:focus-visible { outline: 3px solid var(--coral); outline-offset: 4px; border-r
 
 /* Etapa 54: descarga oficial. Reutiliza .plans-link para ambos botones. */
 [hidden] { display: none !important; }
-button.plans-link { font-family: inherit; cursor: pointer; }
+button.plans-link { appearance: none; font-family: inherit; cursor: pointer; }
 button:focus-visible { outline: 3px solid var(--coral); outline-offset: 4px; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; }
 .download-dialog {
@@ -257,7 +259,11 @@ button:focus-visible { outline: 3px solid var(--coral); outline-offset: 4px; }
 .download-dialog::backdrop { background: #000b; }
 .download-modal { position: relative; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
 .download-close {
-  position: absolute; z-index: 2; top: 12px; right: 12px;
+  /* Se mantiene visible al desplazar el dialogo en pantallas bajas y moviles. */
+  position: sticky; z-index: 2; top: 12px;
+  grid-column: 1 / -1;
+  justify-self: end;
+  margin: 12px 12px -50px 0;
   width: 38px; height: 38px; border: 1px solid var(--line);
   border-radius: 10px; background: #151519; color: var(--white);
   font-size: 27px; line-height: 1; cursor: pointer;
@@ -283,7 +289,7 @@ button:focus-visible { outline: 3px solid var(--coral); outline-offset: 4px; }
   .download-media { min-height: 0; padding: 14px; border-right: 0; border-bottom: 1px solid var(--line); }
   .download-media img { max-height: 32dvh; }
   .download-info { padding: 20px 18px 24px; }
-  .download-close { top: 8px; right: 8px; }
+  .download-close { top: 8px; margin: 8px 8px -46px 0; }
 }
 @media (max-width: 470px) {
   .hero-actions { gap: 7px; }
