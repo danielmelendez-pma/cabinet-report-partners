@@ -235,3 +235,60 @@ a:focus-visible { outline: 3px solid var(--coral); outline-offset: 4px; border-r
   html { scroll-behavior: auto; }
   .site-nav a, .plans-link, .social-links a { transition: none; }
 }
+
+/* Etapa 54: descarga oficial. Reutiliza .plans-link para ambos botones. */
+[hidden] { display: none !important; }
+button.plans-link { font-family: inherit; cursor: pointer; }
+button:focus-visible { outline: 3px solid var(--coral); outline-offset: 4px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; }
+.download-dialog {
+  width: min(950px, calc(100vw - 32px));
+  max-width: 950px;
+  max-height: min(92dvh, 900px);
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  color: var(--white);
+  background: var(--panel);
+  box-shadow: 0 28px 90px #000c;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.download-dialog::backdrop { background: #000b; }
+.download-modal { position: relative; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+.download-close {
+  position: absolute; z-index: 2; top: 12px; right: 12px;
+  width: 38px; height: 38px; border: 1px solid var(--line);
+  border-radius: 10px; background: #151519; color: var(--white);
+  font-size: 27px; line-height: 1; cursor: pointer;
+}
+.download-close:hover { border-color: var(--coral); color: var(--rose); }
+.download-media { display: grid; align-items: center; justify-items: center; min-height: 310px; padding: 22px; background: #111216; border-right: 1px solid var(--line); }
+.download-media img { display: block; width: auto; max-width: 100%; max-height: min(76dvh, 670px); height: auto; object-fit: contain; border-radius: 7px; }
+.download-info { padding: 42px clamp(20px, 3vw, 36px) 28px; min-width: 0; }
+.download-kicker { font-size: 11px; font-weight: 850; letter-spacing: .12em; color: var(--coral); }
+.download-info h2 { margin: 9px 0 4px; font-size: clamp(23px, 2.8vw, 32px); line-height: 1.15; color: var(--rose); }
+.download-info h3 { margin: 18px 0 8px; font-size: 15px; }
+.download-info p, .download-info li { font-size: 13px; line-height: 1.55; color: #e7dfe3; }
+.download-info ul { padding-left: 19px; margin: 8px 0 18px; }
+.download-info li + li { margin-top: 8px; }
+.download-meta { margin: 0 0 16px; color: var(--coral) !important; }
+.download-install { width: 100%; margin: 4px 0 12px; background: #493036; border-color: var(--coral); }
+.download-note { font-size: 11px !important; color: #c5c0c6 !important; }
+.download-source { display: inline-block; font-size: 12px; color: var(--rose); text-decoration: underline; text-underline-offset: 3px; }
+.download-source:hover { color: var(--coral); }
+@media (max-width: 670px) {
+  .download-dialog { width: calc(100vw - 20px); max-height: 94dvh; }
+  .download-modal { grid-template-columns: 1fr; }
+  .download-media { min-height: 0; padding: 14px; border-right: 0; border-bottom: 1px solid var(--line); }
+  .download-media img { max-height: 32dvh; }
+  .download-info { padding: 20px 18px 24px; }
+  .download-close { top: 8px; right: 8px; }
+}
+@media (max-width: 470px) {
+  .hero-actions { gap: 7px; }
+  .hero-actions .plans-link { font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .download-open { transition: none; }
+}
