@@ -13,7 +13,7 @@
   <meta name="color-scheme" content="dark">
   <link rel="icon" href="logo-redondo.png" type="image/png">
   <link rel="canonical" href="https://danielmelendez-pma.github.io/cabinet-report-partners/">
-  <link rel="stylesheet" href="portal.css?v=20261108-03">
+  <link rel="stylesheet" href="portal.css?v=20261109-54">
   <title>Cabinet Report | Portal oficial</title>
   <script>
     // Preserva los enlaces antiguos a secciones del programa Partners.
@@ -52,7 +52,10 @@
           <img class="hero-logo" src="logo-redondo.png" width="1024" height="1024" alt="Logotipo circular oficial de Cabinet Report">
           <h1 id="hero-title">Un Software de Muebles<br><span>para Fábricas de Muebles</span></h1>
           <p class="hero-description">Planificación, preparación y revisión de la producción de muebles. Explora nuestras herramientas, recursos de aprendizaje y documentación oficial.</p>
-          <a class="plans-link" href="suscripciones.html">Conocer los planes de suscripción <span aria-hidden="true">↗</span></a>
+          <div class="hero-actions">
+            <a class="plans-link" href="suscripciones.html">Conocer los planes de suscripción <span aria-hidden="true">↗</span></a>
+            <button class="plans-link download-open" id="open-download" type="button" aria-haspopup="dialog" aria-controls="download-dialog" hidden>Descargar última versión <span aria-hidden="true">↓</span></button>
+          </div>
         </div>
       </section>
     </main>
@@ -77,5 +80,25 @@
       </div>
     </footer>
   </div>
+  <dialog id="download-dialog" class="download-dialog" aria-labelledby="download-title" aria-describedby="download-summary">
+    <div class="download-modal">
+      <button type="button" class="download-close" id="close-download" aria-label="Cerrar información de descarga">×</button>
+      <div class="download-media">
+        <img id="download-image" src="logo-redondo.png" width="941" height="1672" alt="Imagen oficial de las novedades de Cabinet Report" loading="lazy">
+      </div>
+      <div class="download-info">
+        <span class="download-kicker">LANZAMIENTO OFICIAL · WINDOWS</span>
+        <h2 id="download-title">Cabinet Report</h2>
+        <p class="download-meta" id="download-date"></p>
+        <p id="download-summary"></p>
+        <h3>Principales novedades</h3>
+        <ul id="download-changes"></ul>
+        <a id="download-installer" class="plans-link download-install" href="#" rel="noopener noreferrer" target="_blank">Descargar instalador <span aria-hidden="true">↓</span></a>
+        <p class="download-note">Archivo ejecutable para Windows. La descarga se realiza desde GitHub Releases, el repositorio oficial de actualizaciones. Este portal muestra una versión publicada de forma manual; no comprueba ni cambia automáticamente la última versión.</p>
+        <a id="download-release-link" class="download-source" href="#" target="_blank" rel="noopener noreferrer">Ver publicación oficial y detalles de la versión ↗</a>
+      </div>
+    </div>
+  </dialog>
+  <script src="download-release.js?v=20261109-54" defer></script>
 </body>
 </html>
