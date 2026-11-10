@@ -39,18 +39,16 @@ El logo superior de **Partners** y **Suscripciones** vuelve al portal. Los enlac
 5. Probar un enlace antiguo con `/#simulador` y comprobar que conserva el acceso directo.
 6. Revisar móvil y escritorio, incluyendo el enlace al curso y al manual.
 
-## Etapa 54 — Descarga de la última versión publicada
+## Etapas 54–58 — Descargas e historial oficial
 
-El botón **Descargar última versión** de la portada abre un diálogo nativo accesible con imagen oficial, descripción y enlace directo al instalador para Windows. La ficha está definida únicamente en `download-release.js`; **no es una conexión automática** con GitHub Releases. El código `script.js` del simulador Partners no se modifica.
+La portada ofrece el botón **Descargar última versión**, que obtiene información de `/releases/latest`, y el menú **Versiones**, que muestra hasta las diez Releases estables más recientes. Las dos consultas se realizan al abrir sus respectivos diálogos, sin fijar la versión en el código.
 
-**Fuente verificada (09-11-2026):**
-- Repositorio oficial de instaladores: https://github.com/danielmelendez-pma/CabinetReport-Updates
-- Release sin etiqueta prerelease: https://github.com/danielmelendez-pma/CabinetReport-Updates/releases/tag/v8.22.2.34
-- `version.ini`: `Version=8.22.2.34`, `Fecha=05-11-2026`.
-- Instalador (asset publicado): `CabinetReport-Setup-8.22.2.34.exe` — 547827272 bytes (aprox. 548 MB), SHA-256 `0252e95e9e81b6771cef368a134bad78c7cdd2f397ca2fa1e7e0b6c194965ff8`.
-- Imagen oficial: https://github.com/user-attachments/assets/334de7cf-bf0d-4bd0-866e-305f41113199
-- Novedades y fecha tomadas del cuerpo de la Release.
+- Fuente: [CabinetReport-Updates](https://github.com/danielmelendez-pma/CabinetReport-Updates/releases).
+- Solo se permite mostrar el enlace de instalador si el asset publicado corresponde exactamente al nombre `CabinetReport-Setup-<versión>.exe` y a la etiqueta oficial.
+- Las imágenes se toman del cuerpo de cada Release; si no hay imagen, se informa que no está disponible.
+- Se diferencia la **Fecha de versión** del campo `Fecha=` de la **Publicada en GitHub** del campo `published_at`. Ambas se muestran en DD-MM-AAAA.
+- El visor permite ampliar y desplazar imágenes; el cierre y el foco utilizan diálogos nativos.
+- Los enlaces **Inicio** y logo desde Partners y Suscripciones regresan a la raíz del portal con invalidación de caché por visita. El enlace funciona también sin JavaScript (hacia `./`). Se preserva el acceso directo histórico a `index.html`.
+- La auditoría funcional y los puntos de comprobación manual se documentan en [AUDITORIA_ETAPA_58.md](AUDITORIA_ETAPA_58.md).
 
-**Actualizar una publicación:** verificar la última Release pública estable y sus assets; editar los campos `version`, `date`, `summary`, `changes`, `image`, `installer` y `releasePage` en `download-release.js`; cambiar el parámetro de caché del script en `index.html` si corresponde; revisar que todas las URLs pertenezcan a la publicación real. No asumir que la versión cambia automáticamente.
-
-**Pruebas manuales:** abrir portada en escritorio, laptop estrecha y móvil; comprobar ambos botones en la misma fila cuando quepan; abrir el modal con teclado; tabular dentro del diálogo; cerrar con Escape, botón × y backdrop; restaurar foco al disparador; verificar imagen y enlace de descarga en GitHub; probar zoom 200%; verificar navegación de Partners, suscripciones y redirecciones antiguas. GitHub API confirma el asset publicado, pero una transferencia real de ~548 MB no se ha ejecutado durante esta etapa.
+El estado `uploaded` de los assets acredita su publicación pero no garantiza una descarga integral; esta auditoría no transfirió los ejecutables de cientos de megabytes.

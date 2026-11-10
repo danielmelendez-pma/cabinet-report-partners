@@ -20,14 +20,19 @@
     const match = body.match(/<img\b[^>]*\bsrc\s*=\s*["']([^"']+)["']/i);
     return match && imagePattern.test(match[1]) ? match[1] : null;
   };
-  const extractDate = (body, published) => {
+  // La fecha de la versión no siempre es la fecha real de publicación en GitHub.
+  const extractDates = (body, published) => {
     const found = body.match(/^Fecha\s*=\s*(\d{2}-\d{2}-\d{4})\s*$/im);
-    if (found) return found[1];
     const date = new Date(published);
-    return Number.isFinite(date.getTime()) ? new Intl.DateTimeFormat("es-PA", {
-      day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC"
-    }).format(date) : "";
+    const publication = Number.isFinite(date.getTime()) ?
+      [date.getUTCDate(), date.getUTCMonth() + 1].map(n => String(n).padStart(2, "0"))
+        .concat(String(date.getUTCFullYear())).join("-") : null;
+    return { versionDate: found ? found[1] : null, publishedDate: publication };
   };
+  const describeDates = release => [
+    release.versionDate ? "Fecha de versión: " + release.versionDate : null,
+    release.publishedDate ? "Publicada en GitHub: " + release.publishedDate : null
+  ].filter(Boolean).join(" · ");
   const extractChanges = body => {
     const section = body.match(/CARACTER[IÍ]STICAS DE LA VERSI[OÓ]N:[\s\S]*?(?=\[General\]|<img\b|$)/i);
     return (section ? section[0] : body).split(/\r?\n/)
@@ -46,7 +51,7 @@
       a.state === "uploaded" && a.browser_download_url === url);
     const body = typeof release.body === "string" ? release.body : "";
     return {
-      version, date: extractDate(body, release.published_at),
+      version, ...extractDates(body, release.published_at),
       image: extractImage(body), changes: extractChanges(body),
       installer: asset ? url : null
     };
@@ -82,7 +87,7 @@
       if (!parsed || !parsed.installer) throw new Error("Sin instalador oficial verificable");
       if (controller.signal.aborted || sequence !== latestSequence || !latestDialog.open) return;
       byId("download-title").textContent = "Cabinet Report · v" + parsed.version;
-      byId("download-date").textContent = parsed.date ? "Publicación: " + parsed.date : "";
+      byId("download-date").textContent = describeDates(parsed);
       byId("download-summary").textContent = parsed.changes.length ?
         "Versión estable más reciente publicada oficialmente." :
         "La publicación no incluye novedades con el formato habitual.";
@@ -157,7 +162,7 @@
     }
     const date = document.createElement("p");
     date.className = "version-date";
-    date.textContent = release.date ? "Publicación: " + release.date : "Fecha no disponible";
+    date.textContent = describeDates(release) || "Fecha no disponible";
     details.append(title, date);
     const heading = document.createElement("h4");
     heading.textContent = "Novedades";
