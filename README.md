@@ -10,6 +10,8 @@ Este repositorio publica en GitHub Pages el **portal principal de Cabinet Report
 | Programa Partners | `partners.html` | https://danielmelendez-pma.github.io/cabinet-report-partners/partners.html |
 | Planes de suscripción | `suscripciones.html` | https://danielmelendez-pma.github.io/cabinet-report-partners/suscripciones.html |
 
+El menú superior de **Inicio**, **Partners** y **Suscripciones** incluye **Portal Cliente**, que abre `https://cabinetreportportal.duckdns.org/` en una pestaña nueva. El portal privado exige autenticación y no comparte sesión con GitHub Pages.
+
 El logo superior de **Partners** y **Suscripciones** vuelve al portal. Los enlaces antiguos de Partners que usaban `/#planes`, `/#simulador` y otras anclas se redirigen a `partners.html` conservando el fragmento y los parámetros de consulta.
 
 ## Recursos externos enlazados desde el portal

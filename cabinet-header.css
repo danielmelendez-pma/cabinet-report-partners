@@ -145,3 +145,30 @@
     border-radius: 7px; font-size: 11px;
   }
 }
+
+
+/* Etapa 83 — Acceso visible al Portal Cliente privado de Hostinger. */
+.cr-site-header .cr-site-nav .cr-client-portal-nav {
+  color: #ffe4e1;
+  background: #463036;
+  border: 1px solid #a66b73;
+  border-radius: 8px;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+.cr-site-header .cr-site-nav .cr-client-portal-nav:hover {
+  color: #fff;
+  background: #604048;
+  border-color: #f08080;
+}
+@media (max-width: 470px) {
+  .cr-site-header .cr-site-nav .cr-client-portal-nav {
+    padding: 7px 8px;
+    background: #463036;
+    border-color: #a66b73;
+  }
+  /* Inicio tiene siete entradas (incluido Versiones); la última ocupa la fila entera. */
+  .cr-site-header .cr-site-nav .cr-client-portal-nav:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
